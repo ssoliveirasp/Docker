@@ -1,0 +1,37 @@
+##########################################
+# Create Web\Redis 
+###########################################
+
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+     - "6060:8080"
+    depends_on: 
+     - redis
+  redis:
+    image: "redis:alpine"
+
+###########################################
+# Create Redis com Variavel de Ambiente
+###########################################
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+     - "5000:5000"
+  volumes:
+    .:/code
+  labels:
+    - 'app.environment=${ENV_APP}'
+  redis:
+    image: redis
+  volumes:
+    - dados_${ENV_APP}:/data
+  labels:
+    - 'app.environment=${ENV_APP}'
+    
+-------------------------------------
+export ENV_APP=devel ; docker-compose -p $ENV_APP\ up -d
