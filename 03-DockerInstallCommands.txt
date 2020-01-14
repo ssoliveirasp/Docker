@@ -1,0 +1,34 @@
+#Images
+
+docker run microsoft/dotnet-samples:dotnetapp-nanoserver-sac2016
+docker run hello-world:nanoserver-sac2016
+
+#LCOW 
+
+[Environment]::SetEnvironmentVariable("LCOW_SUPPORTED", "1", "Machine")
+
+https://www.ntweekly.com/2019/09/20/how-to-run-linux-containers-on-windows-server-2016-version-1709/
+
+#Experimental
+
+
+$configfile =@"
+{
+    "experimental":true
+}
+"@
+
+$configfile|Out-File -FilePath c:\Programdata\docker\config\daemon.json -Encoding ascii -Force
+
+restart-Service docker
+
+# Create docker run
+sudo docker run -d -p 6379:6379 --name flyapy-redis -i -t redis:3.2.5-alpine
+
+# Redis-Cli Install
+sudo apt install redis-tools
+
+# Referencias
+https://www.thomasmaurer.ch/2017/10/how-to-run-docker-linux-container-on-windows-server-1709/
+
+https://chunliu.me/2018/02/12/running-linux-containers-on-windows-server-2016/
