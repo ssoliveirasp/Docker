@@ -1,0 +1,217 @@
+
+***********************************************
+## Executar Container
+***********************************************
+#Execução
+docker run -d -it --name counter loodse/counter 
+
+***********************************************
+## Trabalhando com Volumes (Container Data)
+***********************************************
+docker create -v /config --name dataContainer busybox
+docker cp config.conf dataContainer:/config/
+docker run --volumes-from dataContainer ubuntu ls /config
+
+***********************************************
+## Migrar dados de um container
+***********************************************
+docker export dataContainer > dataContainer.tar
+docker import dataContainer.tar
+
+***********************************************
+## Inspecionar Imagem
+***********************************************
+docker inspect debian | grep Cmd --after-context=10
+docker inspect debian | grep User --before-context=5
+docker inspect debian | grep Id
+
+//Format
+docker inspect -f '{{json .Created}}' counter
+docker inspect -f '{{ .NetworkSettings.IPAddress }}' redis-server
+
+//Listagens de maquinas e endereço IP
+docker ps -q | xargs docker inspect --format '{{ .Id }} - {{ .Name }} - {{ .NetworkSettings.IPAddress }}'
+
+***********************************************
+## Criar Imagem com Tag Customizada
+***********************************************
+docker tag debian webserver
+docker run -it webserver
+
+***********************************************
+## Visualizar Log
+***********************************************
+docker run -d -it --name counter loodse/counter
+
+docker logs counter
+
+***********************************************
+## Remove tudo que não estiver sendo usado
+***********************************************
+docker system prune — Delete all unused containers, unused networks, and dangling images.
+
+***********************************************
+## Listar conteudo de um container
+***********************************************
+docker run password ls /app
+
+***********************************************
+## Criar Imagem
+***********************************************
+##Dockerfile
+docker build -t webserver .
+
+##Via comando
+docker create -v /config --name dataContainer busybox
+
+***********************************************
+## Monitoramento de Maquinas
+***********************************************
+#Listar mapeamentos (/etc/hosts)
+docker exec redis-server cat /etc/hosts
+docker run --link redis-server:redis alpine cat /etc/hosts
+
+#Apresenta Utilização das maquinas
+ docker stats redis-server
+ 
+ //Combining the two we can take the list of all our running containers provided  
+ docker ps -q | xargs docker stats
+
+#Apresenta um resumo (Containers, Imagens e Volumes)
+docker system df
+
+#Lista maquinas com problemas
+docker ps --filter "status=exited"
+
+***********************************************
+## Emular Docker Exit Codes
+***********************************************
+
+#Retorna "Exit Code 1: Indicates failure due to application error
+docker container run --name ContainerExit1   alpine sh -c "exit 1"
+
+#Retorna "Exit Code 137: Indicates failure as container received SIGKILL (Manual intervention or ‘oom-killer’ [OUT-OF-MEMORY])"
+docker container run --name ContainerExit137 alpine sh -c "exit 137"
+
+#Retorna "Exit Code 139: Indicates failure as container received SIGSEGV"
+docker container run --name ContainerExit139 alpine sh -c "exit 139"
+
+#Retorna "Exit Code 143: Indicates failure as container received SIGTERM"
+docker container run --name ContainerExit143 alpine sh -c "exit 143"
+
+#Exibir codigo da imagem pela inspeção
+docker inspect containerExit137 --format='{{.State.ExitCode}}'
+
+***********************************************
+## Trabalhando com Redes
+***********************************************
+
+#Links
+ docker run -d --name redis-server redis
+ docker run --link redis-server:redis alpine env
+ docker run --link redis-server:redis alpine cat /etc/hosts
+ docker run --link redis-server:redis alpine ping -c 1 redis
+ docker run -it --link redis-server:redis redis redis-cli -h redis
+
+#Network
+ // Criar Network
+ docker network create backend-network
+ docker network create frontend-network
+ docker network create frontend-network2
+ 
+ //Conectar Container a uma rede
+ docker network connect frontend-network redis
+ docker network connect --alias db frontend-network2 redis
+ 
+ //Criar e executa um container incluindo em uma rede
+ docker run -d --name=redis --net=backend-network redis
+ docker run --net=backend-network alpine env
+ 
+ //Obter informação da rede no Container
+ docker run --net=backend-network alpine cat /etc/hosts       //O ip da rede diferente do link não fica neste arquivo
+ docker run --net=backend-network alpine cat /etc/resolv.conf //O ip da da rede fica neste arquivo
+ 
+ //Testar acesso a redes pelo container
+ docker run --net=backend-network   alpine ping -c1 redis
+ docker run --net=frontend-network2 alpine ping -c1 db
+ 
+ //Listar Network
+ docker network ls
+
+***********************************************
+## Docker Restart Policies
+***********************************************
+// create file cmd force exit
+vi crash.sh
+sleep 30
+exit 1
+
+//Dockerfile
+FROM ubuntu:14.04 AS builder
+ADD crash.sh /
+CMD /bin/bash /crash.sh
+
+//Build Image
+docker build -t testing_restarts ./  
+
+//Images with multi-stage builds
+docker build --target builder -t alexellis2/href-counter:latest .
+
+//Restart no              - Não reinicia a maquina
+docker run -d --name testing_restarts --restart no testing_restarts
+
+//Restart always          - Fica reiniciando sempre que falha a maquina
+docker run -d --name testing_restarts --restart always testing_restarts
+
+//Restart on-failure      - Reinicia a maquina no limite definido
+docker run -d --name testing_restarts --restart on-failure:5 testing_restarts
+
+//Restart  unless-stopped - Reinicia a maquina sempre que falha mais não reinicia a maquina no caso do docker ser reiniciado
+docker run -d --name testing_restarts --restart unless-stopped testing_restarts
+
+***********************************************
+## Trabalhando com Labels e Metadata
+***********************************************
+// Single Label
+docker run -l user=12345 -d redis
+
+//External Files
+#Label file
+echo 'user=123461' >> labels && echo 'role=cache' >> labels
+
+#Execute container with label-file
+docker run --label-file=labels -d redis
+
+//Pesquisar Container por Label
+docker ps     --filter "label=user=scrapbook"
+
+//Pesquisar Images por Label
+docker images --filter "label=vendor=Katacoda"
+
+***********************************************
+## Listagem de imagens 
+***********************************************
+docker ps --format '{{.Names}} container is using {{.Image}} image'
+
+docker ps --format 'table {{.Names}}\t{{.Image}}'
+
+#####################################
+## Docker Files - Commands
+#####################################
+Abaixo podemos visualizar todas as opções de instruções disponíveis:
+
+FROM: Informa a partir de qual imagem será gerada a nova imagem, lembrando que em poucos casos (Veremos em posts futuros), uma imagem será gerada se um imagem base;
+MAINTAINER (deprecated): Campo opcional, que informa o nome do mantenedor da nova imagem, substituída pelo LABEL.
+RUN: Especifica que o argumento seguinte será executado, ou seja, realiza a execução de um comando;
+CMD: Define um comando a ser executado quando um container baseado nessa imagem for iniciado, esse parâmetro pode ser sobrescrito caso o container seja iniciado utilizando alguma informação de comando, como: docker run -d imagem comando, neste caso o CMD da imagem será sobrescrito pelo comando informado;
+LABEL: Adiciona metadados a uma imagem, informações adicionais que servirão para identificar versão, tipo de licença, ou host, lembrando que a cada nova instrução LABEL é criada uma nova layer, o Docker recomenda que você não use muitas LABEL. É possível realizar filtragens posteriormente utilizando essas LABEL.
+EXPOSE: Expõem uma ou mais portas, isso quer dizer que o container quando iniciado poderá ser acessível através dessas portas;
+ENV: Instrução que cria e atribui um valor para uma variável dentro da imagem, isso é útil para realizar a instalação de alguma aplicação ou configurar um ambiente inteiro.
+ADD: Adiciona arquivos locais  ou que estejam em uma url, para dentro da imagem.
+COPY: Copia arquivos ou diretórios locais para dentro da imagem.
+ENTRYPOINT: Informa qual comando será executado quando um container for iniciado utilizando esta imagem, diferentemente do CMD, o ENTRYPOINT não é sobrescrito, isso quer dizer que este comando será sempre executado.
+VOLUME: Mapeia um diretório do host para ser acessível pelo container;
+USER: Define com qual usuário serão executadas as instruções durante a geração da imagem;
+WORKDIR: Define qual será o diretório de trabalho (lugar onde serão copiados os arquivos, e criadas novas pastas);
+ONBUILD: Define algumas instruções que podem ser realizadas quando alguma determinada ação for executada, é basicamente como uma trigger.
+TAG: Criar uma nova imagem com tag customizada originada de uma imagem base.
