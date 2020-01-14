@@ -1,0 +1,150 @@
+#####################################
+##Create Ng-inx
+#####################################
+
+#DockerFile
+from nginx:1.11-alpine
+copy . /usr/share/nginx/html
+expose 80 
+cmd nginx -g daemon off
+
+#DockerBuild
+docker build -t my-nginx-image:latest .
+
+#####################################
+##End Create Ng-inx
+#####################################
+
+--------------------------------------------------------------
+
+#####################################
+## Create IIS Server
+#####################################
+
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
+RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
+RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
+CMD [ "cmd" ]
+
+#####################################
+## End Create IIS Server
+#####################################
+
+--------------------------------------------------------------
+
+#####################################
+##Create NodeJS
+#####################################
+
+#DockerFile
+FROM node:10-alpine
+RUN mkdir -p /src/app
+WORKDIR /src/app
+COPY package.json /src/app/package.json
+RUN npm install
+COPY . /src/app
+EXPOSE 3000
+CMD [ "npm", "start" ]
+
+#dockerBuild
+docker build -t my-nodejs-app .
+docker run -d --name my-running-app -p 3000:3000 my-nodejs-app
+
+#dockerbuild variables
+docker run -d --name my-production-running-app -e NODE_ENV=production -p 3000:3000 my-nodejs-app
+
+#####################################
+##End Create NodeJS
+#####################################
+
+----------------------------------------------------------------------
+
+#####################################
+## Start: "Create Ubuntu e Apache"
+#####################################
+
+FROM ubuntu:18.04
+RUN apt-get update && apt-get install apache2 -y && apt-get clean
+CMD ["apache2ctl", "-DFOREGROUND"]
+
+#####################################
+## End: "Create Ubuntu e Apache"
+#####################################
+
+--------------------------------------------------------------
+
+#####################################
+##Start "Create Install Apache"
+#####################################
+
+docker run -it debian
+
+apt-get update && apt-get install apache2 -y
+
+
+docker run -it -p 80:80 -n my-web my-image
+
+# interactive shell in the container
+# verify hostname and envrionment is the id of the conainer
+hostname
+env
+df
+
+#check if apache is running
+ps -aufx
+
+#####################################
+##End "Create Install Apache"
+#####################################
+
+------------------------------------------------------------
+
+#########################################
+##Start "Create Install Ubuntu e Apache"
+#########################################
+
+FROM ubuntu:18.04
+RUN apt-get update && apt-get install apache2 -y && apt-get clean
+COPY html /var/www/html
+CMD ["apache2ctl", "-DFOREGROUND"]
+
+#####################################
+##End "Create Install Ubuntu e Apache"
+#####################################
+
+#####################################
+##Start ".Dockerignore"
+#####################################
+
+#Adiciona informações do arquivo para dockerignore
+echo passwords.txt >> .dockerignore
+echo somelargefile.img >> .dockerignore
+
+#Listar diretorio
+docker run nopassword ls /app
+
+#####################################
+##End ".Dockerignore"
+#####################################
+
+------------------------------------------------------------------------
+
+#####################################
+## Docker Files - Commands
+#####################################
+Abaixo podemos visualizar todas as opções de instruções disponíveis:
+
+FROM: Informa a partir de qual imagem será gerada a nova imagem, lembrando que em poucos casos (Veremos em posts futuros), uma imagem será gerada se um imagem base;
+MAINTAINER (deprecated): Campo opcional, que informa o nome do mantenedor da nova imagem, substituída pelo LABEL.
+RUN: Especifica que o argumento seguinte será executado, ou seja, realiza a execução de um comando;
+CMD: Define um comando a ser executado quando um container baseado nessa imagem for iniciado, esse parâmetro pode ser sobrescrito caso o container seja iniciado utilizando alguma informação de comando, como: docker run -d imagem comando, neste caso o CMD da imagem será sobrescrito pelo comando informado;
+LABEL: Adiciona metadados a uma imagem, informações adicionais que servirão para identificar versão, tipo de licença, ou host, lembrando que a cada nova instrução LABEL é criada uma nova layer, o Docker recomenda que você não use muitas LABEL. É possível realizar filtragens posteriormente utilizando essas LABEL.
+EXPOSE: Expõem uma ou mais portas, isso quer dizer que o container quando iniciado poderá ser acessível através dessas portas;
+ENV: Instrução que cria e atribui um valor para uma variável dentro da imagem, isso é útil para realizar a instalação de alguma aplicação ou configurar um ambiente inteiro.
+ADD: Adiciona arquivos locais  ou que estejam em uma url, para dentro da imagem.
+COPY: Copia arquivos ou diretórios locais para dentro da imagem.
+ENTRYPOINT: Informa qual comando será executado quando um container for iniciado utilizando esta imagem, diferentemente do CMD, o ENTRYPOINT não é sobrescrito, isso quer dizer que este comando será sempre executado.
+VOLUME: Mapeia um diretório do host para ser acessível pelo container;
+USER: Define com qual usuário serão executadas as instruções durante a geração da imagem;
+WORKDIR: Define qual será o diretório de trabalho (lugar onde serão copiados os arquivos, e criadas novas pastas);
+ONBUILD: Define algumas instruções que podem ser realizadas quando alguma determinada ação for executada, é basicamente como uma trigger.
