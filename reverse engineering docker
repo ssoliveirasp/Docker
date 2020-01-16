@@ -1,0 +1,16 @@
+$ sudo pip install runlike
+
+# run the ubuntu image
+$ docker run -ti ubuntu bash
+
+$ docker ps -a  
+# suppose you get the container ID 1dfff2ba0226
+
+# Run runlike to get the docker run command. 
+$ runlike 1dfff2ba0226
+docker run --name=elated_cray -t ubuntu bash
+
+
+https://github.com/lavie/runlike/
+
+https://stackoverflow.com/questions/32758793/how-to-show-the-run-command-of-a-docker-container/32774347#32774347
