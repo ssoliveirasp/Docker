@@ -1,0 +1,17 @@
+
+**** Kind *****
+kind get clusters
+
+*** Kubectl ***
+
+#Informações do Cluster
+kubectl cluster-info
+
+#Obter Nodes
+kubectl get nodes
+
+#
+kubectl config get-contexts
+
+#Visualizar todos os Pods
+kubectl get all -A
