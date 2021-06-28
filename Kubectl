@@ -13,5 +13,10 @@ kubectl get nodes
 #
 kubectl config get-contexts
 
+#Criar um pod
+kubectl apply -f pods.yaml
+
 #Visualizar todos os Pods
 kubectl get all -A
+
+kubectl get pods
