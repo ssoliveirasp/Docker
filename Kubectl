@@ -14,9 +14,12 @@ kubectl get nodes
 kubectl config get-contexts
 
 #Criar um pod
-kubectl apply -f pods.yaml
+kubectl apply -f [arquivo.yaml]
 
 #Visualizar todos os Pods
 kubectl get all -A
 
 kubectl get pods
+
+#Deletar pod
+ kubectl delete pod [nome-pod]
