@@ -1,6 +1,10 @@
 
 **** Kind *****
+kind create cluster
+
 kind get clusters
+
+kind delete cluster
 
 *** Kubectl ***
 
