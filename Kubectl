@@ -23,3 +23,5 @@ kubectl get pods
 
 #Deletar pod
  kubectl delete pod [nome-pod]
+
+ kubectl delete -f [arquivo.yaml[
