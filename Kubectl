@@ -19,6 +19,12 @@ kubectl config get-contexts
 
 kubectl config view
 
+
+# The command below finds the allocated port and executes a HTTP request.
+
+export PORT=$(kubectl get svc first-deployment -o go-template='{{range.spec.ports}}{{if .nodePort}}{{.nodePort}}{{"\n"}}{{end}}{{end}}')
+echo "Accessing host01:$PORT"
+curl host01:$PORT
 #Criar um pod
 kubectl apply -f [arquivo.yaml]
 
