@@ -19,6 +19,8 @@ kubectl config get-contexts
 
 kubectl config view
 
+#Expondo uma porta da maquina
+kubectl expose deployment first-deployment --port=80 --type=NodePort
 
 # The command below finds the allocated port and executes a HTTP request.
 
