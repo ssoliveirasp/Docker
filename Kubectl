@@ -14,8 +14,10 @@ kubectl cluster-info
 #Obter Nodes
 kubectl get nodes
 
-#
+# Visualizar a configurações 
 kubectl config get-contexts
+
+kubectl config view
 
 #Criar um pod
 kubectl apply -f [arquivo.yaml]
