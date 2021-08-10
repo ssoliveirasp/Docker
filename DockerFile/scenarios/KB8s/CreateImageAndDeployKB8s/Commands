@@ -1,0 +1,14 @@
+#Create Image
+docker build -t hugo-site:v1 .
+
+#List image
+docker images hugo-site:v1
+
+#Run Image
+docker run -d --rm --name hugo -p 8080:8080 hugo-site:v1
+
+#Running Containers
+docker ps | grep hugo
+
+#Stop container
+docker stop hugo
