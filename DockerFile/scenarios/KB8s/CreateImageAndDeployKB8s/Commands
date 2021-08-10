@@ -1,14 +1,20 @@
-#Create Image
+#Create Image Docker
 docker build -t hugo-site:v1 .
 
-#List image
+#List image Docker
 docker images hugo-site:v1
 
-#Run Image
+#Run Image Docker
 docker run -d --rm --name hugo -p 8080:8080 hugo-site:v1
 
-#Running Containers
+#Running Containers Docker 
 docker ps | grep hugo
 
-#Stop container
+#Stop container Docker
 docker stop hugo
+
+#Push Image Docker
+docker tag hugo-site:v1 eduk8s-labs-w08-s075-registry.kube-prod-blue-3f0fcd9.kubeacademy.esp.vmware.com/hugo-site:v1
+
+docker push eduk8s-labs-w08-s075-registry.kube-prod-blue-3f0fcd9.kubeacademy.esp.vmware.com/hugo-site:v1
+
