@@ -10,8 +10,14 @@ kubectl get service
 #Delete Service
 kubectl delete -f services-Nodeport.yaml
 
+#Delete Deployment
+kubectl delete -f deployment.yaml
+
 #Create Service 
 kubectl apply -f cluster-ip-service.yaml
 
 #Acessing url
 curl http://hugo-site.eduk8s-labs-w08-s076.svc.cluster.local/
+
+#Get Endpoint
+kubectl get endpoints
