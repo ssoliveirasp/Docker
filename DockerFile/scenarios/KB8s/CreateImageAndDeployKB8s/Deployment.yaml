@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hugo-site
+  labels:
+    app: hugo-site
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hugo-site
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: hugo-site
+        tier: frontend
+    spec:
+      containers:
+      - name: hugosite
+        image: eduk8s-labs-w08-s076-registry.kube-prod-blue-3f0fcd9.kubeacademy.esp.vmware.com/hugo-site:v1
+        securityContext:
+          runAsNonRoot: true
+        ports:
+        - containerPort: 8080
