@@ -6,7 +6,7 @@ ENV TZ=America/Sao_Paulo
 WORKDIR /app
 COPY . ./
 WORKDIR /app/Docker.Api
-RUN dotnet nuget add source https://packages.visualstudio.com/nuget/v3/index.json --name NugetPackages --username build --password $PATH --store-password
+RUN dotnet nuget add source https://packages.visualstudio.com/nuget/v3/index.json 
 RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
