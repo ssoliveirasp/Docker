@@ -39,3 +39,7 @@ kubectl get pods
  kubectl delete pod [nome-pod]
 
  kubectl delete -f [arquivo.yaml[
+
+
+#Obter Informações sobre objetos
+kubectl explain pods
