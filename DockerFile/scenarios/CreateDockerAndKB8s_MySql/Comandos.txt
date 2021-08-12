@@ -2,3 +2,10 @@
 
 ## Rede
 docker network create gowebapp
+
+
+## Criar container
+docker run --net gowebapp --name gowebapp-mysql --hostname gowebapp-mysql -d -e MYSQL_ROOT_PASSWORD=mypassword gowebapp-mysql:v1
+
+#Inspect the MySQL database
+docker exec -it gowebapp-mysql mysql -u root -pmypassword gowebapp
