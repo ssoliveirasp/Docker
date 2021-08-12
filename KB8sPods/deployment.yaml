@@ -16,4 +16,7 @@ spec:
     spec:
       containers:
       - name: building-apps-container
+         env:
+         - name: MYSQL_ROOT_PASSWORD
+          value: mypassword
         image: lander2k2/building-apps:0.1
