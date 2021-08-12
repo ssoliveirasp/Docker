@@ -5,6 +5,8 @@
 #Execução
 docker run -d -it --name counter loodse/counter 
 
+docker run --net gowebapp --name gowebapp-mysql --hostname gowebapp-mysql -d -e MYSQL_ROOT_PASSWORD=mypassword gowebapp-mysql:v1
+
 ***********************************************
 ## Trabalhando com Volumes (Container Data)
 ***********************************************
