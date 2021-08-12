@@ -1,1 +1,4 @@
 
+
+## Rede
+docker network create gowebapp
