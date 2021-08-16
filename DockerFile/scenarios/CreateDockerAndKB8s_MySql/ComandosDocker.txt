@@ -9,3 +9,12 @@ docker run --net gowebapp --name gowebapp-mysql --hostname gowebapp-mysql -d -e 
 
 #Inspect the MySQL database
 docker exec -it gowebapp-mysql mysql -u root -pmypassword gowebapp
+
+
+#Select
+
+SHOW DATABASES;
+USE gowebapp;
+SHOW TABLES;
+SELECT * FROM <table_name>;
+exit;
