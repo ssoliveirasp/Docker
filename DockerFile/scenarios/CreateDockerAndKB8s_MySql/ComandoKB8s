@@ -1,0 +1,9 @@
+
+Autocomplete
+kubectl describe <TAB> <TAB>
+
+#Criar Servico
+kubectl apply -f gowebapp-mysql-service.yaml
+
+#Testar Serviço
+kubectl get service -l "run=gowebapp-mysql"
