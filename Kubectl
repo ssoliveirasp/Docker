@@ -46,3 +46,8 @@ kubectl explain pods
 
 #Edit Deployment
 kubectl edit [Nome Deployment]
+
+
+#Get Deployed Objects
+kubectl get deployment
+
