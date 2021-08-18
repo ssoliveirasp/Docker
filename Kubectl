@@ -43,3 +43,6 @@ kubectl get pods
 
 #Obter Informações sobre objetos
 kubectl explain pods
+
+#Edit Deployment
+kubectl edit [Nome Deployment]
