@@ -52,4 +52,4 @@ kubectl edit [Nome Deployment]
 kubectl get deployment
 
 #Rollback Deployment
-kubectl rollout undo deployment/[Name Deployment]
+kubectl rollout undo deployment/[Deployment Name]
