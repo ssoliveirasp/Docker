@@ -53,3 +53,13 @@ kubectl get deployment
 
 #Rollback Deployment
 kubectl rollout undo deployment/[Deployment Name]
+
+
+#api-resources available  (possible determine if a resource is namespaced)
+kubectl api-resources
+
+
+
+
+
+
