@@ -27,8 +27,11 @@ kubectl expose deployment first-deployment --port=80 --type=NodePort
 export PORT=$(kubectl get svc first-deployment -o go-template='{{range.spec.ports}}{{if .nodePort}}{{.nodePort}}{{"\n"}}{{end}}{{end}}')
 echo "Accessing host01:$PORT"
 curl host01:$PORT
-#Criar um pod
+#Criar um pod pu demais objetos
 kubectl apply -f [arquivo.yaml]
+
+#Criar objetos de uma pasta
+kubectl apply -f ../Pasta/
 
 #Visualizar todos os Pods
 kubectl get all -A
@@ -47,7 +50,6 @@ kubectl explain pods
 #Edit Deployment
 kubectl edit [Nome Deployment]
 
-
 #Get Deployed Objects
 kubectl get deployment
 
@@ -58,7 +60,10 @@ kubectl rollout undo deployment/[Deployment Name]
 #List the API resources that are available  (possible determine if a resource is namespaced)
 kubectl api-resources
 
+#Namespaces
 
+ -- Get all object determine namespaces
+    kubectl get all -n 'namespaceName'
 
 
 
