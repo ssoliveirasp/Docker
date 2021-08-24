@@ -55,7 +55,7 @@ kubectl get deployment
 kubectl rollout undo deployment/[Deployment Name]
 
 
-#api-resources available  (possible determine if a resource is namespaced)
+#List the API resources that are available  (possible determine if a resource is namespaced)
 kubectl api-resources
 
 
