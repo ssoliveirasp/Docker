@@ -12,7 +12,9 @@ kind delete cluster
 kubectl cluster-info
 
 #Obter Nodes
-kubectl get nodes
+  kubectl get nodes
+
+  kubectl get po -n 'namespace'
 
 # Visualizar a configurações 
 kubectl config get-contexts
