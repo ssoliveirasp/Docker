@@ -66,7 +66,9 @@ kubectl api-resources
 
  -- Get all object determine namespaces
     kubectl get all -n 'namespaceName'
-
+ 
+  --Delete ns and every one of those objects
+    kubectl delete ns 'name' 
 
 
 
