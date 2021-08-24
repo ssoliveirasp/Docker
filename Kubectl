@@ -36,15 +36,17 @@ kubectl apply -f [arquivo.yaml]
 #Criar objetos de uma pasta
 kubectl apply -f ../Pasta/
 
-#Visualizar todos os Pods
-kubectl get all -A
 
-   kubectl get pods
+### PODS ###
+  #Visualizar todos os Pods
+    - kubectl get all -A
 
-   kubectl get po -n 'namespace'
+    - kubectl get pods
 
--- All pods and Pods System
-   kubectl get pods -A
+    - kubectl get po -n 'namespace'
+
+    - All pods and Pods System
+      kubectl get pods -A
 
 #Deletar pod
  kubectl delete pod [nome-pod]
@@ -56,18 +58,24 @@ kubectl get all -A
 kubectl explain pods
 
 #Deployment
-   --Edit
-   kubectl edit [Nome Deployment]
 
-   -- Describe Deployment
-   kubectl describe deployment nginx-deployment -n default
+   # Edit
+     kubectl edit [Nome Deployment]
+ 
+   # Describe Deployment
+     kubectl describe deployment nginx-deployment -n default
 
-#Get Deployed Objects
-kubectl get deployment
+   # Get Definition
+     kubectl get deploy  nginx-deployment -o json
 
-#Rollback Deployment
-kubectl rollout undo deployment/[Deployment Name]
+   # Get Deployed Objects
+     kubectl get deployment
+   
+   # Get Deployment Definition
+     kubectl get deploy  nginx-deployment -o json
 
+   # Rollback Deployment
+     kubectl rollout undo deployment/[Deployment Name]
 
 #List the API resources that are available  (possible determine if a resource is namespaced)
 kubectl api-resources
