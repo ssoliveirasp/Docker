@@ -11,7 +11,9 @@ kind delete cluster
 alias k=kubectl
 complete -F __start_kubectl k
 
+**********************************
 *** Kubectl ***
+*********************************
 
 #Versão
 kubectl version --client=true
@@ -19,7 +21,22 @@ kubectl version --client=true
 #Informações do Cluster
 kubectl cluster-info
 
-#Obter Nodes
+# Documentação
+  
+  kubectl explain deployment
+
+# View all the resources 
+
+  - deployed to the cluster in the Default Namespace: 
+    kubectl get all
+
+  - View all the resources deployed to the cluster in all of the Namespaces: 
+    kubectl get all --all-namespaces
+
+  - View all the supported resource types
+    kubectl api-resources
+
+# Obter Nodes
   kubectl get nodes
 
 # Visualizar a configurações 
@@ -95,8 +112,8 @@ kubectl explain pods
      kubectl rollout undo deployment/[Deployment Name]
     
 
-#List the API resources that are available  (possible determine if a resource is namespaced)
-kubectl api-resources
+# View all the supported resource types (possible determine if a resource is namespaced)
+  kubectl api-resources
 
 #Namespaces
 
