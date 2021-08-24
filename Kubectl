@@ -64,7 +64,10 @@ kubectl explain pods
  
    # Describe Deployment
      kubectl describe deployment nginx-deployment -n default
-
+     
+   # Describe All Deployment 
+     kubectl describe deployment -n kube-system -A
+   
    # Get Definition
      kubectl get deploy  nginx-deployment -o json
 
@@ -76,6 +79,7 @@ kubectl explain pods
 
    # Rollback Deployment
      kubectl rollout undo deployment/[Deployment Name]
+    
 
 #List the API resources that are available  (possible determine if a resource is namespaced)
 kubectl api-resources
