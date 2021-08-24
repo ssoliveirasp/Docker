@@ -72,7 +72,14 @@ kubectl explain pods
      kubectl get deploy  nginx-deployment -o json
 
    # Get Deployed Objects
-     kubectl get deployment
+     -- All objects, without system objects
+     kubectl get deployment 
+     
+     --All object and System Objects
+     kubectl get deployment -A 
+   
+     -- Get Definition the system Object
+     kubectl get deployment  -n kube-system -o yaml  | grep coredns
    
    # Get Deployment Definition
      kubectl get deploy  nginx-deployment -o json
