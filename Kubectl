@@ -55,8 +55,12 @@ kubectl get all -A
 #Obter Informações sobre objetos
 kubectl explain pods
 
-#Edit Deployment
-kubectl edit [Nome Deployment]
+#Deployment
+   --Edit
+   kubectl edit [Nome Deployment]
+
+   -- Describe Deployment
+   kubectl describe deployment nginx-deployment -n default
 
 #Get Deployed Objects
 kubectl get deployment
