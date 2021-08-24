@@ -6,7 +6,7 @@ kind get clusters
 
 kind delete cluster
 
-*** Alias ***
+*** Alias (Bash) ***
 
 alias k=kubectl
 complete -F __start_kubectl k
@@ -43,7 +43,7 @@ kubectl apply -f ../Pasta/
 
 
 ### PODS ###
-  #Visualizar todos os Pods
+  # Visualizar todos os Pods
     - kubectl get all -A
 
     - kubectl get pods
@@ -53,11 +53,13 @@ kubectl apply -f ../Pasta/
     - All pods and Pods System
       kubectl get pods -A
 
-#Deletar pod
- kubectl delete pod [nome-pod]
+    - All pods sort by 'podId'
+      kubectl get pod -o wide --sort-by=.status.podIP
 
- kubectl delete -f [arquivo.yaml[
+  # Deletar pod
+    kubectl delete pod [nome-pod]
 
+    kubectl delete -f [arquivo.yaml]
 
 #Obter Informações sobre objetos
 kubectl explain pods
