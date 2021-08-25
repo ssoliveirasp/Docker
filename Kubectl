@@ -39,11 +39,6 @@ kubectl cluster-info
 # Obter Nodes
   kubectl get nodes
 
-# Visualizar a configurações 
-kubectl config get-contexts
-
-kubectl config view
-
 #Expondo uma porta da maquina
 kubectl expose deployment first-deployment --port=80 --type=NodePort
 
@@ -124,4 +119,16 @@ kubectl explain pods
     kubectl delete ns 'name' 
 
 
+###Administração
 
+  # Visualizar a configurações 
+    kubectl config get-contexts
+
+  # review the current kubectl configuration the current cluster. 
+     kubectl config view
+
+  # list of all our configured clusters we have access to:
+    kubectl config get-clusters
+
+  # Create new Context
+    kubectl config set-context dev-context --cluster kubernetes --user=kubernetes-admin
