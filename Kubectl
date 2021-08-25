@@ -122,7 +122,10 @@ kubectl explain pods
 ### Administration
 
   ## Context
-  
+
+    #Overview  
+      A context is a group of access parameters. Each context contains a Kubernetes cluster, a user, and a namespace
+    
     # View all contexts of the current cluster 
       kubectl config get-contexts
 
