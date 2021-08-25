@@ -137,3 +137,11 @@ kubectl explain pods
 
     # To switch to another context
       kubectl config use-context dev-context
+
+    # Kubectx
+
+      - To switch to another context
+         kubectx dev-context
+  
+      - List all Context
+         kubectx
