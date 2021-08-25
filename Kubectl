@@ -119,16 +119,21 @@ kubectl explain pods
     kubectl delete ns 'name' 
 
 
-###Administração
+### Administration
 
-  # Visualizar a configurações 
-    kubectl config get-contexts
+  ## Context
+  
+    # View all contexts of the current cluster 
+      kubectl config get-contexts
 
-  # review the current kubectl configuration the current cluster. 
-     kubectl config view
+    # review the current kubectl configuration the current cluster. 
+      kubectl config view
 
-  # list of all our configured clusters we have access to:
-    kubectl config get-clusters
+    # list of all our configured clusters we have access to:
+      kubectl config get-clusters
 
-  # Create new Context
-    kubectl config set-context dev-context --cluster kubernetes --user=kubernetes-admin
+    # Create new Context
+      kubectl config set-context dev-context --cluster kubernetes --user=kubernetes-admin
+
+    # To switch to another context
+      kubectl config use-context dev-context
