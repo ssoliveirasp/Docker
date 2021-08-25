@@ -131,6 +131,7 @@ kubectl explain pods
              It's a great way to validate without making changes
         
          - Create resources inside a namespace
+
            kubectl run redis --image=redis -n backend --restart=Never
               
                 ! The --restart=Never flag tells the kubectl run command to create a single pod.
@@ -139,6 +140,12 @@ kubectl explain pods
 
                 ! --generator flag tells the kubectl run command to pin the resource to a specific apiVersion specification. 
                     In this case apiVersion:v1 and kind:pod. This flag is NOT widely used and may get depracated in future version releases
+
+         --Get objects inside a namespace
+           kubectl get pods --namespace frontend
+           
+         -- Switch beetween namespaces
+            kubectl config set-context --current --namespace=frontend
 
   ## Context
 
