@@ -110,17 +110,26 @@ kubectl explain pods
 # View all the supported resource types (possible determine if a resource is namespaced)
   kubectl api-resources
 
-#Namespaces
+  ## Namespaces
 
- -- Get all object determine namespaces
-    kubectl get all -n 'namespaceName'
+     # Get all object determine namespaces
+        kubectl get all -n 'namespaceName'
  
-  --Delete ns and every one of those objects
-    kubectl delete ns 'name' 
+     # Delete ns and every one of those objects
+       kubectl delete ns 'name' 
 
+     ## Create namespace
 
-### Administration
+        - Create Namespace
+          kubectl create namespace frontend
 
+        - Create Namespace Preview and Save in a file
+          kubectl create namespace backend -o yaml --dry-run >~/ns-backend.yaml
+
+           ? dry-run flag allows you to preview the object without creating it, 
+             and makes no changes to the cluster. 
+             It's a great way to validate without making changes
+        
   ## Context
 
     #Overview  
