@@ -130,7 +130,7 @@ kubectl explain pods
              and makes no changes to the cluster. 
              It's a great way to validate without making changes
         
-         - Create resources inside a namespace
+       ## Create resources inside a namespace
 
            kubectl run redis --image=redis -n backend --restart=Never
               
@@ -141,12 +141,23 @@ kubectl explain pods
                 ! --generator flag tells the kubectl run command to pin the resource to a specific apiVersion specification. 
                     In this case apiVersion:v1 and kind:pod. This flag is NOT widely used and may get depracated in future version releases
 
-         --Get objects inside a namespace
+        ## Get objects inside a namespace
            kubectl get pods --namespace frontend
            
-         -- Switch beetween namespaces
-            kubectl config set-context --current --namespace=frontend
+        ## Switch beetween namespaces
+           kubectl config set-context --current --namespace=frontend
 
+        ## Kubens
+
+           # Overview
+             switch between namespaces
+           
+           # List all namespaces
+             kubens
+
+           # switch namespace
+             kubens frontend
+           
   ## Context
 
     #Overview  
