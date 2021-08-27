@@ -74,6 +74,9 @@ kubectl apply -f ../Pasta/
     - Show labels
       kubectl get pods -n frontend --show-labels
    
+    - Get pods by selector
+      kubectl get pods -n frontend --selector=app=web
+      
   # Deletar pod
     kubectl delete pod [nome-pod]
 
