@@ -71,6 +71,9 @@ kubectl apply -f ../Pasta/
     - Get by name
       kubectl get pods  frontend-deployment-7bb7f6687-n6qqs -n frontend
       
+    - Show labels
+      kubectl get pods -n frontend --show-labels
+   
   # Deletar pod
     kubectl delete pod [nome-pod]
 
