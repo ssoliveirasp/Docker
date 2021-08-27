@@ -68,6 +68,9 @@ kubectl apply -f ../Pasta/
     - All pods sort by 'podId'
       kubectl get pod -o wide --sort-by=.status.podIP
 
+    - Get by name
+      kubectl get pods  frontend-deployment-7bb7f6687-n6qqs -n frontend
+      
   # Deletar pod
     kubectl delete pod [nome-pod]
 
