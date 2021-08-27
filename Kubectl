@@ -171,7 +171,12 @@ kubectl explain pods
       kubectl config get-contexts
 
     # review the current kubectl configuration (KubeConfig) the current cluster. 
+      -view kubeconfig
       kubectl config view
+      
+      -access file
+        cd $HOME/.kube
+        cat config
 
     # list of all our configured clusters we have access to:
       kubectl config get-clusters
