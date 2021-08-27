@@ -55,12 +55,14 @@ kubectl apply -f ../Pasta/
 
 
 ### PODS ###
-  # Visualizar todos os Pods
-    - kubectl get all -A
+  ## Visualizar todos os Pods
+    
+    # Get pods
+      kubectl get all -A
 
-    - kubectl get pods
+      kubectl get pods
 
-    - kubectl get po -n 'namespace'
+      kubectl get po -n 'namespace'
 
     - All pods and Pods System
       kubectl get pods -A
@@ -75,7 +77,14 @@ kubectl apply -f ../Pasta/
       kubectl get pods -n frontend --show-labels
    
     - Get pods by selector
+      - Uses selector
       kubectl get pods -n frontend --selector=app=web
+      
+      - Uses selector with condition   
+      kubectl get nodes --selector='!node-role.kubernetes.io/master'
+
+      -Uses label
+      kubectl get pods -n frontend -l app=haproxy
       
   # Deletar pod
     kubectl delete pod [nome-pod]
