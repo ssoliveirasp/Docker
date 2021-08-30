@@ -55,36 +55,47 @@ kubectl apply -f ../Pasta/
 
 
 ### PODS ###
-  ## Visualizar todos os Pods
     
-    # Get pods
+    ## Get pods
+
       kubectl get all -A
 
       kubectl get pods
 
       kubectl get po -n 'namespace'
 
-    - All pods and Pods System
+    # All pods and Pods System
       kubectl get pods -A
 
-    - All pods sort by 'podId'
+    # All pods sort by 'podId'
       kubectl get pod -o wide --sort-by=.status.podIP
 
-    - Get by name
+    # Get by name
       kubectl get pods  frontend-deployment-7bb7f6687-n6qqs -n frontend
       
-    - Show labels
+    # Show labels
       kubectl get pods -n frontend --show-labels
    
-    - Get pods by selector
+    # Get pods by selector
       - Uses selector
-      kubectl get pods -n frontend --selector=app=web
+        kubectl get pods -n frontend --selector=app=web
       
       - Uses selector with condition   
-      kubectl get nodes --selector='!node-role.kubernetes.io/master'
+        kubectl get nodes --selector='!node-role.kubernetes.io/master'
 
-      -Uses label
-      kubectl get pods -n frontend -l app=haproxy
+      - Uses label
+        kubectl get pods -n frontend -l app=haproxy
+      
+     # Get Pods format view
+
+       - Using "\n"
+         kubectl get nodes -o=jsonpath='{.items[*].metadata.name}{"\n"}{.items[*].status.capacity.cpu}{"\n"}'
+
+       - Use the range and end
+         kubectl get nodes -o=jsonpath='{range  .items[*]}{.metadata.name}{"\t"}{.status.capacity.cpu}{"\n"}{end}'
+       
+       - Use Custom-Columns
+         kubectl get nodes -o=custom-columns=NAME:.metadata.name,CPU:.status.capacity.cpu
       
   # Deletar pod
     kubectl delete pod [nome-pod]
