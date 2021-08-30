@@ -98,7 +98,18 @@ kubectl apply -f ../Pasta/
          kubectl get nodes -o=custom-columns=NAME:.metadata.name,CPU:.status.capacity.cpu
    
          kubectl get pods  -o custom-columns=Pod_NAME:.metadata.name,IMAGE_VER:.spec.containers[*].image
-      
+     
+     # Edit Label from Pod
+
+       - Use Patch
+         kubectl patch pod nginx -p '{"metadata":{"labels":{"env":"dev"}}}'
+       
+       - Use Label  
+         kubectl label pod nginx env=prod --overwrite
+
+       - Delete Label
+         kubectl label pod nginx env-
+ 
   # Deletar pod
     kubectl delete pod [nome-pod]
 
@@ -118,6 +129,9 @@ kubectl explain pods
        kubectl set image deployment/nginx-deployment nginx=nginx:1.17 --record
        
        ! --record flag to capture and record the history of the rollout: 
+       !  commands is not best practice. 
+          The best practice is to manually edit the deployment manifest file and update the spec.template.spec.containers[].image field, 
+          save it, and run the kubectl apply -f DEPPLYOMET.YAML
  
    #Scale
    
@@ -152,19 +166,36 @@ kubectl explain pods
      - Get
        kubectl get deployment/nginx-deployment
 
-   # format view Deployments
-    
 
    # Get Deployment Definition
      kubectl get deploy  nginx-deployment -o json
 
    # Rollback Deployment
-     kubectl rollout undo deployment/[Deployment Name]
-    
-   # Create
-     kubectl create deployment nginx-deployment --image=nginx:1.16
-
    
+    -- Execute rollout
+     
+       - Last change
+         kubectl rollout undo deployment/[Deployment Name]
+
+       - Specific Revision
+         kubectl rollout undo deployment/nginx-deployment --to-revision=2
+   
+     - Show Actual Status of Rollout 
+       kubectl rollout status -w deployment/nginx-deployment
+
+     - Show all history of rollout
+       kubectl rollout history deployment/nginx-deployment     
+
+   # Create
+   
+     - Simple
+       kubectl create deployment nginx-deployment --image=nginx:1.16
+     
+     - With Labes
+       kubectl run nginx  --image=nginx --restart=Never --labels=env=prod
+
+     - Dry-run - Validate Manifest File
+       kubectl create deployment deploy-nginx --image=nginx --dry-run -o yaml >~/deploy-nginx.yaml
 
 # View all the supported resource types (possible determine if a resource is namespaced)
   kubectl api-resources
