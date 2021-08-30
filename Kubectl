@@ -96,6 +96,8 @@ kubectl apply -f ../Pasta/
        
        - Use Custom-Columns
          kubectl get nodes -o=custom-columns=NAME:.metadata.name,CPU:.status.capacity.cpu
+   
+         kubectl get pods  -o custom-columns=Pod_NAME:.metadata.name,IMAGE_VER:.spec.containers[*].image
       
   # Deletar pod
     kubectl delete pod [nome-pod]
@@ -111,6 +113,11 @@ kubectl explain pods
    
      - Edit Deployment Definition
        kubectl edit [Nome Deployment]
+ 
+     - Edit Image Deployment
+       kubectl set image deployment/nginx-deployment nginx=nginx:1.17 --record
+       
+       ! --record flag to capture and record the history of the rollout: 
  
    #Scale
    
@@ -144,6 +151,9 @@ kubectl explain pods
    
      - Get
        kubectl get deployment/nginx-deployment
+
+   # format view Deployments
+    
 
    # Get Deployment Definition
      kubectl get deploy  nginx-deployment -o json
