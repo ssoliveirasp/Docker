@@ -108,8 +108,15 @@ kubectl explain pods
 #Deployment
 
    # Edit
-     kubectl edit [Nome Deployment]
+   
+     - Edit Deployment Definition
+       kubectl edit [Nome Deployment]
  
+   #Scale
+   
+    -  Edit scale the deployment up to 5 replicas by command
+       kubectl scale deploy nginx-deployment --replicas=5
+
    # Describe Deployment
      kubectl describe deployment nginx-deployment -n default
      
@@ -120,21 +127,34 @@ kubectl explain pods
      kubectl get deploy  nginx-deployment -o json
 
    # Get Deployed Objects
-     -- All objects, without system objects
-     kubectl get deployment 
+     - All objects, without system objects
+       kubectl get deployment 
      
-     --All object and System Objects
-     kubectl get deployment -A 
+     - All object and System Objects
+       kubectl get deployment -A 
    
-     -- Get Definition the system Object
-     kubectl get deployment  -n kube-system -o yaml  | grep coredns
+     - Get Definition the system Object
+       kubectl get deployment  -n kube-system -o yaml  | grep coredns
    
+     - Get Specific Deployment
+       kubectl get deploy nginx-deployment
+     
+     - Get Deployment by name
+       kubectl get deploy nginx-deployment
+   
+     - Get
+       kubectl get deployment/nginx-deployment
+
    # Get Deployment Definition
      kubectl get deploy  nginx-deployment -o json
 
    # Rollback Deployment
      kubectl rollout undo deployment/[Deployment Name]
     
+   # Create
+     kubectl create deployment nginx-deployment --image=nginx:1.16
+
+   
 
 # View all the supported resource types (possible determine if a resource is namespaced)
   kubectl api-resources
