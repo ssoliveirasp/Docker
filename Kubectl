@@ -15,6 +15,9 @@
 -- Update latest from chart repositories
    helm repo update
 
+-- Install Chart
+   helm install my-release bitnami/drupal
+
 **** Kind *****
 kind create cluster
 
