@@ -1,4 +1,12 @@
 
+
+
+**** helm *****
+
+helm version
+
+helm repo list
+
 **** Kind *****
 kind create cluster
 
