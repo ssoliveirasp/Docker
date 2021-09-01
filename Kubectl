@@ -16,7 +16,15 @@
    helm repo update
 
 -- Create Release / Install Chart
-   helm install my-release --set drupalUsername=kubeacademytest --set drupalPassword=Kubeacademy bitnami/drupal
+
+   --- Basic
+        helm install my-release bitnami/drupal
+
+   --- With Parameters 
+       helm install my-release --set drupalUsername=kubeacademytest --set drupalPassword=Kubeacademy bitnami/drupal
+
+   --- Select Version
+       helm install bitnami/rabbitmq -version 6.8.2
 
 -- Delete Release
    helm delete my-release
