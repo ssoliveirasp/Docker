@@ -26,12 +26,23 @@
    --- Select Version
        helm install myrabbitmq bitnami/rabbitmq --version 6.18.3
 
--- Upgrade 
+-- Upgrade Release
    helm upgrade myrabbitmq bitname/rabbitmq --version 6.18.3 --set replicas:3 --set rabbitmq.password=password --set rabbitmq.erlangCookie=rbpassword 
+
+-- History Release
+   helm history myrabbitmq
+   
+-- Rollback Release
+
+   --- Rollback last release
+       helm rollback myrabitmq
+
+-- Unistall Release
+   helm uninstall myrabbitmq
 
 -- Delete Release
    helm delete my-release
-   
+  
 -- Search Repo
    helm search repo bitnami -l
 
