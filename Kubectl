@@ -24,7 +24,10 @@
        helm install my-release --set drupalUsername=kubeacademytest --set drupalPassword=Kubeacademy bitnami/drupal
 
    --- Select Version
-       helm install bitnami/rabbitmq -version 6.18.3
+       helm install myrabbitmq bitnami/rabbitmq --version 6.18.3
+
+-- Upgrade 
+   helm upgrade myrabbitmq bitname/rabbitmq --version 6.18.3 --set replicas:3 --set rabbitmq.password=password --set rabbitmq.erlangCookie=rbpassword 
 
 -- Delete Release
    helm delete my-release
@@ -148,8 +151,11 @@ kubectl apply -f ../Pasta/
 
     kubectl delete -f [arquivo.yaml]
 
-#Obter Informações sobre objetos
-kubectl explain pods
+  # Obter Informações sobre objetos 
+    kubectl explain pods
+
+  # Executar
+    kubectl exec -ti myrabbitmq-0 -- rabbitmqctl --version 
 
 #Deployment
 
