@@ -167,6 +167,11 @@ kubectl apply -f ../Pasta/
 
   # Executar
     kubectl exec -ti myrabbitmq-0 -- rabbitmqctl --version 
+ 
+  # Logs
+    $ kubectl logs kubia-manual -c kubia
+       -c <container name>
+   
 
 #Deployment
 
