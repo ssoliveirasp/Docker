@@ -20,6 +20,9 @@
 
 -- Delete Release
    helm delete my-release
+   
+-- Search Repo
+   helm search repo bitnami -l
 
 **** Kind *****
 kind create cluster
