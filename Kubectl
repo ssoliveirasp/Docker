@@ -15,8 +15,11 @@
 -- Update latest from chart repositories
    helm repo update
 
--- Install Chart
-   helm install my-release bitnami/drupal
+-- Create Release / Install Chart
+   helm install my-release --set drupalUsername=kubeacademytest --set drupalPassword=Kubeacademy bitnami/drupal
+
+-- Delete Release
+   helm delete my-release
 
 **** Kind *****
 kind create cluster
