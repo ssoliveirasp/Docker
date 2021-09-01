@@ -3,11 +3,17 @@
 
 **** helm *****
 
-helm version
+-- Show Version
+   helm version
 
-helm repo list
+-- Repositories List 
+   helm repo list
 
-helm repo add bitnami https://charts.bitnami.com/bitnami
+-- Add Repository
+   helm repo add bitnami https://charts.bitnami.com/bitnami
+
+-- Update latest from chart repositories
+   helm repo update
 
 **** Kind *****
 kind create cluster
