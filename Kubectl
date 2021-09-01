@@ -24,7 +24,7 @@
        helm install my-release --set drupalUsername=kubeacademytest --set drupalPassword=Kubeacademy bitnami/drupal
 
    --- Select Version
-       helm install bitnami/rabbitmq -version 6.8.2
+       helm install bitnami/rabbitmq -version 6.18.3
 
 -- Delete Release
    helm delete my-release
