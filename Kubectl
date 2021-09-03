@@ -179,6 +179,8 @@ kubectl apply -f ../Pasta/
     $ kubectl logs kubia-manual -c kubia
        -c <container name>
    
+      kubectl logs mypod --previous
+         ! previous -> When you want to figure out why the previous container terminated
 
 #Deployment
 
