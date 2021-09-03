@@ -167,6 +167,8 @@ kubectl apply -f ../Pasta/
 
     kubectl delete -f [arquivo.yaml]
 
+    $ kubectl delete po -l rel=beta
+
   # Obter Informações sobre objetos 
     kubectl explain pods
 
