@@ -175,6 +175,9 @@ kubectl apply -f ../Pasta/
   # Executar
     kubectl exec -ti myrabbitmq-0 -- rabbitmqctl --version 
  
+  # Information about history about container (running, restarted)
+    kubectl describe po kubia-liveness
+ 
   # Logs
     $ kubectl logs kubia-manual -c kubia
        -c <container name>
