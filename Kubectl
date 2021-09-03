@@ -180,8 +180,8 @@ kubectl apply -f ../Pasta/
  
     # Liveness
         Liveness: http-get http://:8080/ delay=0s timeout=1s period=10s #success=1 #failure=3
-
-               ! delay=0s    -> part shows that the probing begins immediately after the container is started
+               ! liveness    -> probe simply checks if the server is responding.
+               ! delay=0s    -> part shows that the probing begins immediately after the container is started.
                ! timeout=1s  -> is set to only 1 second, so the container must return a response in 1 second or the probe is counted as failed.
                ! period=10s  -> The container is probed every 10 seconds (period=10s).
                ! #failure=3  -> restarted after the probe fails three consecutive times.
