@@ -153,7 +153,12 @@ kubectl apply -f ../Pasta/
        
        - Use Label  
          kubectl label pod nginx env=prod --overwrite
-
+    
+         Suggestions Label
+         env (prod,devel)
+         app (ui,etc..)
+         rel (stable, beta, canary)
+  
        - Delete Label
          kubectl label pod nginx env-
  
