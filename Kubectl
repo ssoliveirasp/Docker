@@ -46,6 +46,9 @@
 -- Search Repo
    helm search repo bitnami -l
 
+-- Template Test
+   helm template my-chart .
+
 **** Kind *****
 kind create cluster
 
