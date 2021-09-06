@@ -6,10 +6,8 @@
 -- Show Version
    helm version
 
--- Chart File
+-- Show Chart File
    helm show chart .
-
--- Show 
 
 -- Repositories List 
    helm repo list
