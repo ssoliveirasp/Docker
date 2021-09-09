@@ -208,7 +208,7 @@ kubectl apply -f ../Pasta/
       kubectl logs mypod --previous
          ! previous -> When you want to figure out why the previous container terminated
 
-#Deployment
+#Deployment (Recommended)
 
    # Edit
    
