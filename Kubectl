@@ -189,6 +189,9 @@ kubectl apply -f ../Pasta/
 
   # Executar
     kubectl exec -ti myrabbitmq-0 -- rabbitmqctl --version 
+    
+    -- Listar Variaveis de Ambiente
+       kubectl exec kubia-3inly env
  
   # Information about history about container (running, restarted)
     kubectl describe po kubia-liveness
