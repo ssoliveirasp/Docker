@@ -367,7 +367,7 @@ kubectl apply -f ../Pasta/
     # To switch to another context
       kubectl config use-context dev-context
 
-   ## ReplicationController
+   ## ReplicationController (Not Recommended)
   
      # Overview
        ReplicationController is a Kubernetes resource that ensures its pods are always kept running
