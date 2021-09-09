@@ -371,7 +371,11 @@ kubectl apply -f ../Pasta/
   
      # Overview
        ReplicationController is a Kubernetes resource that ensures its pods are always kept running
-    
+       
+       - A label selector, which determines what pods are in the ReplicationController’s scope 
+       - A replica count, which specifies the desired number of pods that should be running
+       - A pod template, which is used when creating new pod replicas (Metadata e spec defination)
+       
     #  Get ReplicationControllers
        kubectl get rc  
      
