@@ -367,6 +367,17 @@ kubectl apply -f ../Pasta/
     # To switch to another context
       kubectl config use-context dev-context
 
+   ## ReplicationController
+  
+     # Overview
+       ReplicationController is a Kubernetes resource that ensures its pods are always kept running
+    
+    #  Get ReplicationControllers
+       kubectl get rc  
+     
+     # Scale
+       kubectl scale rc kubia --replicas=3
+
     # Kubectx
 
       - To switch to another context
