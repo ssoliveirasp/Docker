@@ -297,6 +297,16 @@ kubectl apply -f ../Pasta/
 # View all the supported resource types (possible determine if a resource is namespaced)
   kubectl api-resources
 
+
+### ConfigMap 
+
+ ## Overview
+    ConfigMaps bind configuration files, command-line arguments, environment variables, port numbers, and other configuration artifacts to your Pods' 
+    containers and system components at runtime.
+ 
+ -- Create from command 
+    kubectl create configmap fortune-config --from-literal=sleep-interval=25
+
   ## Namespaces
 
      # Get all object determine namespaces
@@ -373,6 +383,8 @@ kubectl apply -f ../Pasta/
 
     # To switch to another context
       kubectl config use-context dev-context
+
+
 
    ## ReplicationController (Not Recommended)
   
