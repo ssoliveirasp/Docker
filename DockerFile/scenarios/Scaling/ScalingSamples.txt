@@ -1,0 +1,21 @@
+
+
+# Increasing the target CPU utilization by editing the HPA resource
+spec:
+maxReplicas: 5
+metrics:
+- resource:
+name: cpu
+targetAverageUtilization: 60
+type: Resource
+
+
+# HorizontalPodAutoscaler definition for CPU-based autoscaling
+
+spec:
+maxReplicas: 5
+metrics:
+- type: Resource
+resource:
+name: cpu
+targetAverageUtilization: 30
