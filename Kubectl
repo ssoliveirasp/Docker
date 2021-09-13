@@ -101,6 +101,9 @@ kubectl cluster-info
 # Obter Nodes
   kubectl get nodes
 
+# A node’s capacity and allocatable resources
+  kubectl describe nodes
+
 #Expondo uma porta da maquina
 kubectl expose deployment first-deployment --port=80 --type=NodePort
 
@@ -396,7 +399,14 @@ kubectl apply -f ../Pasta/
 
 
 
-   ## ReplicationController (Not Recommended)
+### Pods
+
+  ## Examining CPU and memory usage from within a container
+     kubectl exec -it requests-pod top
+   
+   
+   
+### ReplicationController (Not Recommended)
   
      # Overview
        ReplicationController is a Kubernetes resource that ensures its pods are always kept running
