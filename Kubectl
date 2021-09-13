@@ -300,14 +300,24 @@ kubectl apply -f ../Pasta/
 
 ### ConfigMap 
 
- ## Overview
-    ConfigMaps bind configuration files, command-line arguments, environment variables, port numbers, and other configuration artifacts to your Pods' 
-    containers and system components at runtime.
+  ## Overview
+     ConfigMaps bind configuration files, command-line arguments, environment variables, port numbers, and other configuration artifacts to your Pods' 
+     containers and system components at runtime.
  
- -- Create from command 
-    kubectl create configmap fortune-config --from-literal=sleep-interval=25
+  ## Create from command 
+     kubectl create configmap fortune-config --from-literal=sleep-interval=25
 
-  ## Namespaces
+  ## CREATING A CONFIGMAP ENTRY FROM THE CONTENTS OF A FILE
+     kubectl create configmap my-config --from-file=config-file.conf
+     
+  ## COMBINING DIFFERENT OPTIONS   
+     kubectl create configmap my-config
+           --from-file=foo.json
+           --from-file=bar=foobar.conf
+           --from-file=config-opts/            "A whole directory"
+           --from-literal=some=thing           "Literal"
+     
+### Namespaces
 
      # Get all object determine namespaces
         kubectl get all -n 'namespaceName'
