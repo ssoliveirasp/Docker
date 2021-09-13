@@ -1,0 +1,25 @@
+
+
+
+### Referenciando pela chave do ConfigMap
+
+metadata:
+name: fortune-env-from-configmap
+spec:
+containers:
+- image: luksa/fortune:env
+env:
+- name: INTERVAL
+valueFrom:
+configMapKeyRef:
+name: fortune-config
+
+### Passando um arquivo como variaveis de ambiente
+
+spec:
+containers:
+- image: some-image
+envFrom:
+- prefix: CONFIG_
+configMapRef:
+name: my-config-map
