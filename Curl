@@ -1,0 +1,3 @@
+
+Multiples Requests
+xargs -I % -P 5  curl -X 'GET'   'https://url/api/v1/get'  -H 'accept: text/plain' < <(printf '%s\n' {1..50})
